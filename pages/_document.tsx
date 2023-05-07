@@ -4,6 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
+      <title> Ovidot's next app</title>
       <body>
         <Main />
         <NextScript />
