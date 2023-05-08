@@ -18,6 +18,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "baseUrl": ".",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx","**/*.js"],
   "exclude": ["node_modules"]
 }
