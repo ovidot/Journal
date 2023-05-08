@@ -1,5 +1,5 @@
 import { SparklesIcon } from "@heroicons/react/24/outline";
-
+import { Banner } from "./Banner";
 export const Feed = () => {
   return (
     <div className="xl:ml-[370px] text-black border-gray-200 border-l border-r xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
@@ -9,6 +9,7 @@ export const Feed = () => {
           <SparklesIcon className="h-5" />
         </div>
       </div>
+      <Banner />
     </div>
   );
 };
