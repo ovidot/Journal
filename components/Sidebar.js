@@ -13,9 +13,9 @@ import {
 
 export const Sidebar = () => {
   return (
-    <div className="hidden sm:flex flex-col p-2 xl:items-start fixed h-full">
+    <div className="hidden sm:flex  flex-col p-2 xl:items-start fixed h-full">
       {/* Logo */}
-      <div className="hoverEffect p-0 hover:bg-blue-100 xl:p-1">
+      <div className="hoverEffect hover:scale-125 p-0 hover:bg-black xl:p-1">
         <Image
           src={
             "https://as2.ftcdn.net/v2/jpg/02/14/20/11/1000_F_214201107_dneiBCFGKayS9T52kcCVt1Epv2jD6aJa.jpg"
@@ -26,7 +26,7 @@ export const Sidebar = () => {
         ></Image>
       </div>
       {/* Menu */}
-      <div className="mt-4 mb-2.5 xl:items-start">
+      <div className="mt-4 mb-2.5 xl:items-start ">
         <SidebarMenuItem text="Home" Icon={HomeIcon} active />
         <SidebarMenuItem text="Explore" Icon={HashtagIcon} />
         <SidebarMenuItem text="Notification" Icon={BellIcon} />
@@ -36,8 +36,8 @@ export const Sidebar = () => {
         <SidebarMenuItem text="More" Icon={EllipsisHorizontalCircleIcon} />
       </div>
       {/* Button */}
-      <button className="bg-blue-400 text-white rounded-full w-56 h-12 font-bold shadow-md hover:brightness-90 text-lg hidden xl:inline">
-        Topics
+      <button className="bg-black text-white rounded-full w-56 h-12 font-bold shadow-md hover:brightness-90 text-lg hidden xl:inline">
+        Journal
       </button>
 
       {/* Users */}
