@@ -2,11 +2,12 @@ import { SparklesIcon } from "@heroicons/react/24/outline";
 import { Banner } from "./Banner";
 import { Input } from "./Input";
 import { Post } from "./Post";
+import { Headers } from "./Headers";
 export const Feed = () => {
   const posts = [
     {
       id: 1,
-      day: 1,
+      day: "Day 1",
       name: "Uzezi Ovraiti",
       username: "Ovidot",
       userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
@@ -16,7 +17,7 @@ export const Feed = () => {
     },
     {
       id: 2,
-      day: 2,
+      day: "Day 2",
       name: "Uzezi Ovraiti",
       username: "Ovidot",
       userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
@@ -26,7 +27,7 @@ export const Feed = () => {
     },
     {
       id: 3,
-      day: 3,
+      day: "Day 3",
       name: "Uzezi Ovraiti",
       username: "Ovidot",
       userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
@@ -36,7 +37,7 @@ export const Feed = () => {
     },
     {
       id: 4,
-      day: 4,
+      day: "Day 4",
       name: "Uzezi Ovraiti",
       username: "J-snow",
       userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
@@ -56,11 +57,15 @@ export const Feed = () => {
         </div>
       </div>
       <Banner key={lastPost.id} latest={lastPost} />
-      <Input />
-      <div className="grid  sm:shrink-0 gap-4 md:grid-cols-2  text-black xl:min-w-[900px] flex-grow max-w-7xl">
-        {posts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
+      {/* <Input /> */}
+      <Headers key={lastPost.id} latest={lastPost} />
+      <div className=" blr mt-16 grid  sm:shrink-0 gap-4 md:grid-cols-2  text-black xl:min-w-[900px] flex-grow max-w-7xl">
+        {posts
+          .slice()
+          .reverse()
+          .map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
       </div>
     </div>
   );
