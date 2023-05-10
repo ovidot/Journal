@@ -32,7 +32,7 @@ export const Post = ({ post }) => {
               style={{
                 backgroundImage: `url(${post.img})`,
               }}
-              className="relative brightness-50 font-serif  text-center justify-center items-center text-white h-44 rounded-2xl w-full bg-center bg-cover "
+              className="relative hover:brightness-60  font-serif  text-center justify-center items-center text-white h-44 rounded-2xl w-full bg-center bg-cover "
             >
               <h4 className=" justify-center">{post.name}</h4>
               <p>{post.username}</p>
