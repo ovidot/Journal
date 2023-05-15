@@ -59,6 +59,7 @@ export const Feed = () => {
       <Banner key={lastPost.id} latest={lastPost} />
       {/* <Input /> */}
       <Headers key={lastPost.id} latest={lastPost} />
+      <Input />
       <div className=" blr mt-16 grid  sm:shrink-0 gap-4 md:grid-cols-2  text-black xl:min-w-[900px] flex-grow max-w-7xl">
         {posts
           .slice()
