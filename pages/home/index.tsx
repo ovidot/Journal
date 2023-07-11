@@ -11,7 +11,11 @@ export default function Home() {
   const router = useRouter()
   const { data: session } = useSession();
 
-  
+  useEffect(()=>{
+    if (!session){
+      router.push('/auth/signin')
+    }
+  },[])
   return (
     <>
     {session && (

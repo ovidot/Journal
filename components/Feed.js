@@ -3,49 +3,66 @@ import { Banner } from "./Banner";
 import { Input } from "./Input";
 import { Post } from "./Post";
 import { Headers } from "./Headers";
+import { useEffect, useState } from "react";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { db } from "@/firebase";
+
 export const Feed = () => {
-  const posts = [
-    {
-      id: 1,
-      day: "Day 1",
-      name: "Uzezi Ovraiti",
-      username: "Ovidot",
-      userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
-      img: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      text: "Nice day",
-      timestamp: "2 hours ago",
-    },
-    {
-      id: 2,
-      day: "Day 2",
-      name: "Uzezi Ovraiti",
-      username: "Ovidot",
-      userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
-      img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      text: "My desk",
-      timestamp: "2 hours ago",
-    },
-    {
-      id: 3,
-      day: "Day 3",
-      name: "Uzezi Ovraiti",
-      username: "Ovidot",
-      userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
-      img: "https://plus.unsplash.com/premium_photo-1672243970579-8cd2d0e9e0b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      text: "wow",
-      timestamp: "2 days ago",
-    },
-    {
-      id: 4,
-      day: "Day 4",
-      name: "Uzezi Ovraiti",
-      username: "J-snow",
-      userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
-      img: "https://images.unsplash.com/photo-1530893609608-32a9af3aa95c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHRlY2h8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-      text: "wow",
-      timestamp: "2 days ago",
-    },
-  ];
+  const [posts, setPosts] = useState([]);
+
+  useEffect(
+    () =>
+      onSnapshot(
+        query(collection(db, "posts"), orderBy("timestamp", "desc")),
+        (snapshot) => {
+          setPosts(snapshot.docs);
+        }
+      ),
+    []
+  );
+
+  // const posts = [
+  //   {
+  //     id: 1,
+  //     day: "Day 1",
+  //     name: "Uzezi Ovraiti",
+  //     username: "Ovidot",
+  //     userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
+  //     img: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  //     text: "Nice day",
+  //     timestamp: "2 hours ago",
+  //   },
+  //   {
+  //     id: 2,
+  //     day: "Day 2",
+  //     name: "Uzezi Ovraiti",
+  //     username: "Ovidot",
+  //     userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
+  //     img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  //     text: "My desk",
+  //     timestamp: "2 hours ago",
+  //   },
+  //   {
+  //     id: 3,
+  //     day: "Day 3",
+  //     name: "Uzezi Ovraiti",
+  //     username: "Ovidot",
+  //     userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
+  //     img: "https://plus.unsplash.com/premium_photo-1672243970579-8cd2d0e9e0b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  //     text: "wow",
+  //     timestamp: "2 days ago",
+  //   },
+  //   {
+  //     id: 4,
+  //     day: "Day 4",
+  //     name: "Uzezi Ovraiti",
+  //     username: "J-snow",
+  //     userImg: "https://www.adscientificindex.com/pictures/71/1349464.jpg",
+  //     img: "https://images.unsplash.com/photo-1530893609608-32a9af3aa95c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHRlY2h8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+  //     text: "wow",
+  //     timestamp: "2 days ago",
+  //   },
+  // ];
   const lastPost = posts[posts.length - 1];
 
   return (
@@ -56,9 +73,9 @@ export const Feed = () => {
           <SparklesIcon className="h-5" />
         </div>
       </div>
-      <Banner key={lastPost.id} latest={lastPost} />
+      <Banner key={posts.id} latest={posts} />
       {/* <Input /> */}
-      <Headers key={lastPost.id} latest={lastPost} />
+      <Headers key={posts.id} latest={posts} />
       <Input />
       <div className=" blr mt-16 grid  sm:shrink-0 gap-4 md:grid-cols-2  text-black xl:min-w-[900px] flex-grow max-w-7xl">
         {posts

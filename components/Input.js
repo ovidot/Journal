@@ -19,6 +19,7 @@ import { useRef, useState } from "react";
 export const Input = () => {
   const { data: session } = useSession();
   const [input, setInput] = useState("");
+  const [input1, setInput1] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const filePickerRef = useRef(null);
@@ -28,7 +29,8 @@ export const Input = () => {
     setLoading(true);
     const docRef = await addDoc(collection(db, "posts"), {
       id: session.user.uid,
-      text: input,
+      Title: input,
+      text: input1,
       userImage: session.user.image,
       timestamp: serverTimestamp(),
       name: session.user.name,
@@ -76,9 +78,16 @@ export const Input = () => {
               <textarea
                 className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px] text-gray-700"
                 rows={2}
-                placeholder="Whats Hapening?"
+                placeholder="Title?"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+              ></textarea>
+              <textarea
+                className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px] text-gray-700"
+                rows={2}
+                placeholder="Whats Hapening?"
+                value={input1}
+                onChange={(e) => setInput1(e.target.value)}
               ></textarea>
             </div>
             {selectedFile && (
@@ -109,7 +118,6 @@ export const Input = () => {
                         onChange={addImageToPost}
                       />
                     </div>
-                    <FaceSmileIcon className="h-10 w-10 hoverEffect p-2 text-sky-500 hover:bg-sky-100" />
                   </div>
                   <button
                     onClick={sendPost}

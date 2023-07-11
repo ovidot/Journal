@@ -1,12 +1,14 @@
 import {
-  ChatBubbleBottomCenterIcon,
   ChatBubbleBottomCenterTextIcon,
-  EllipsisHorizontalCircleIcon,
-  EllipsisHorizontalIcon,
   HeartIcon,
   ShareIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
+import Moment from "react-moment";
+
+//Get data from firestore
+//Loop through data to get akk posts
+//map posts and display from latest to earliest
 
 export const Post = ({ post }) => {
   return (
@@ -30,11 +32,11 @@ export const Post = ({ post }) => {
             {/* Post User info */}
             <div
               style={{
-                backgroundImage: `url(${post.img})`,
+                backgroundImage: `url(${post.data().image})`,
               }}
               className="relative hover:brightness-60  font-serif  text-center justify-center items-center text-white h-44 rounded-2xl w-full bg-center bg-cover "
             >
-              <h4 className=" justify-center">{post.name}</h4>
+              <h4 className=" justify-center">{post.data().name}</h4>
               <p>{post.username}</p>
             </div>
           </div>
@@ -42,7 +44,7 @@ export const Post = ({ post }) => {
           {/* <EllipsisHorizontalIcon className="h-10 w-10 hover:text-blue-500 hoverEffect" /> */}
 
           {/* Post text */}
-          <p className="bg-gray-100">{post.text}</p>
+          <p className="bg-gray-100">{post.data().text}</p>
 
           {/* Post Image */}
 
@@ -53,7 +55,9 @@ export const Post = ({ post }) => {
             <HeartIcon className="h-9 p-2 hoverEffect hover:text-red-500 hover:bg-red-100" />
             <ShareIcon className="h-9 p-2 hoverEffect hover:text-sky-500 hover:bg-sky-100" />
             <div className="flex">
-              <span>{post.timestamp}</span>
+              <span>
+                <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
+              </span>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { SidebarMenuItem } from "./SidebarMenuItem";
 import { HomeIcon } from "@heroicons/react/24/solid";
+import Dropdown from "./Dropdown";
 import {
   HashtagIcon,
   BellIcon,
@@ -17,7 +18,7 @@ export const Sidebar = () => {
   return (
     <div className="hidden sm:flex  flex-col p-2 xl:items-start fixed h-full">
       {/* Logo */}
-      <div className="hoverEffect hover:scale-125 p-0 hover:bg-black xl:p-1">
+      <div className=" hover:scale-125 p-0 xl:p-1">
         <Image
           src={
             "https://as2.ftcdn.net/v2/jpg/02/14/20/11/1000_F_214201107_dneiBCFGKayS9T52kcCVt1Epv2jD6aJa.jpg"
@@ -30,18 +31,19 @@ export const Sidebar = () => {
       {/* Menu */}
       <div className="mt-4 mb-2.5 xl:items-start ">
         <SidebarMenuItem text="Home" Icon={HomeIcon} active />
-        <SidebarMenuItem text="Explore" Icon={HashtagIcon} />
+        {/* <SidebarMenuItem text="Explore" Icon={HashtagIcon} /> */}
         {session && (
           <>
             <SidebarMenuItem text="Notification" Icon={BellIcon} />
             <SidebarMenuItem text="Bookmarks" Icon={BookmarkIcon} />
             <SidebarMenuItem text="List" Icon={ClipboardIcon} />
-            <SidebarMenuItem text="Profile" Icon={UserIcon} />
-            <SidebarMenuItem text="More" Icon={EllipsisHorizontalCircleIcon} />
+            {/* <SidebarMenuItem text="Profile" Icon={UserIcon} />
+            <SidebarMenuItem text="More" Icon={EllipsisHorizontalCircleIcon} /> */}
           </>
         )}
       </div>
       {/* Button */}
+
       {session ? (
         <>
           <button className="bg-black text-white rounded-full w-56 h-12 font-bold shadow-md hover:brightness-90 text-lg hidden xl:inline">
@@ -63,7 +65,8 @@ export const Sidebar = () => {
               <h4 className="font-bold">{session.user.name}</h4>
               <p className="text-gray-500">{session.user.email}</p>
             </div>
-            <EllipsisHorizontalIcon className="h-5 xl:ml-8 hidden xl:inline" />
+
+            <Dropdown />
           </div>
         </>
       ) : (
